@@ -15,14 +15,22 @@ namespace CASO7_Combinado__OCP___DIP__Notificaciones_Multicanal.Providers
     {
         public void Send(string message)
         {
-            // 1. Configura tus datos reales (Usa tu correo emisor de Gmail)
+            // 1. Configura tus datos reales
             string correoEmisor = "jocrme@gmail.com";
-            string contrasenaSegura = "atlttbdxkynedhlj"; // Tu clave de 16 letras activa
+
+            // 🚨 EL CAMBIO: Leemos la clave desde Windows.
+            string contrasenaSegura = Environment.GetEnvironmentVariable("MAIL_PASSWORD", EnvironmentVariableTarget.User);
+
+            if (string.IsNullOrEmpty(contrasenaSegura))
+            {
+                Console.WriteLine("[Error] No se encontró la contraseña en las variables de entorno.");
+                return; // Detiene el envío para que la app no explote
+            }
 
             // 2. Crear el objeto del mensaje usando MimeKit
             var email = new MimeMessage();
             email.From.Add(new MailboxAddress("Sistema SOLID", correoEmisor));
-            email.To.Add(new MailboxAddress("Destinatario", "jocrme@gmail.com")); // Tu correo de destino
+            email.To.Add(new MailboxAddress("Destinatario", "jocrme@gmail.com"));
             email.Subject = "🚨 Notificación en Tiempo Real - MailKit C#";
 
             email.Body = new TextPart(MimeKit.Text.TextFormat.Plain)
@@ -30,31 +38,22 @@ namespace CASO7_Combinado__OCP___DIP__Notificaciones_Multicanal.Providers
                 Text = message
             };
 
-            // 3. Enviar usando el cliente moderno de MailKit
-            using (var client = new SmtpClient())
+            // 3. Enviar el correo (Asegúrate de tener este bloque al final de tu método)
+            using var client = new MailKit.Net.Smtp.SmtpClient();
+            try
             {
-                try
-                {
-                    // Conexión SSL pura y directa en el puerto 465
-                    client.Connect("smtp.gmail.com", 465, MailKit.Security.SecureSocketOptions.SslOnConnect);
-
-                    // Autenticar con tus credenciales de Google
-                    client.Authenticate(correoEmisor, contrasenaSegura);
-
-                    // Enviar correo real a internet
-                    client.Send(email);
-
-                    Console.WriteLine("\n[Email] ¡Éxito total con MailKit! El correo ya está en tu bandeja de entrada.");
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"\n[MailKit Error] Falló el envío: {ex.Message}");
-                }
-                finally
-                {
-                    // Desconectarse limpiamente del servidor
-                    client.Disconnect(true);
-                }
+                client.Connect("smtp.gmail.com", 587, MailKit.Security.SecureSocketOptions.StartTls);
+                client.Authenticate(correoEmisor, contrasenaSegura);
+                client.Send(email);
+                Console.WriteLine("[Email] ¡Éxito total con MailKit! El correo ya está en tu bandeja de entrada.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"[Email Error] Falló el envío: {ex.Message}");
+            }
+            finally
+            {
+                client.Disconnect(true);
             }
         }
     }
