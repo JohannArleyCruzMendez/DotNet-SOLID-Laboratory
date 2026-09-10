@@ -1,0 +1,12 @@
+<Solution>
+  <Project Path="BootcampTech.ConsoleApp/BootcampTech.ConsoleApp.csproj" />
+  <Project Path="BootcampTech.Data/BootcampTech.Data.csproj" />
+  <Project Path="BootcampTech.Domain/BootcampTech.Domain.csproj" />
+  <Project Path="CASO1_SRP_Principio_de_Responsabilidad_Unica/CASO1_SRP_Principio_de_Responsabilidad_Unica.csproj" Id="66080a4d-620a-4605-a219-8d5b10d64e4b" />
+  <Project Path="CASO2_OCP_Principio_de_Abierto_Cerrado/CASO2_OCP_Principio_de_Abierto_Cerrado.csproj" Id="05c60443-19a5-4160-b711-df531b98b8f3" />
+  <Project Path="CASO3_LSP_Principio_de_Sustitución_de_Liskov/CASO3_LSP_Principio_de_Sustitución_de_Liskov.csproj" Id="b1ca8b35-d449-4775-802b-1bb6c0fead4e" />
+  <Project Path="CASO4_ISP_Principio_de_Segregación_de_Interfaces/CASO4_ISP_Principio_de_Segregación_de_Interfaces.csproj" Id="7e4cc565-7813-455d-997f-1158041ce662" />
+  <Project Path="CASO5_DIP_Principio_de_Inversión_de_Dependencias/CASO5_DIP_Principio_de_Inversión_de_Dependencias.csproj" Id="f53e31c3-9168-42a9-9a31-ba90ebeafa36" />
+  <Project Path="CASO6_Combinado_(SRP_+_ISP)_El_Reporte_Financiero/CASO6_Combinado_(SRP_+_ISP)_El_Reporte_Financiero.csproj" Id="abc8b191-bd70-4762-85cd-b04a1d2a759f" />
+  <Project Path="CASO7_Combinado_(OCP_+_DIP)_Notificaciones_Multicanal/CASO7_Combinado_(OCP_+_DIP)_Notificaciones_Multicanal.csproj" Id="ec63a107-1f02-42b1-a06f-428013bc2ec1" />
+</Solution>
