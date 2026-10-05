@@ -13,10 +13,14 @@ La solución está dividida en proyectos independientes que documentan la evoluc
 * **Caso 5 (DIP):** Inversión de dependencias para orquestar pasarelas de pago intercambiables (Stripe, PayPal).
 * **Caso 6 (SRP + ISP):** Diseño de un motor de reportes financieros aislando el cálculo matemático de la exportación a documentos.
 * **Caso 7 (OCP + DIP):** Sistema escalable de notificaciones multicanal integrando servicios en la nube reales.
+* **Caso 8 (LSP + ISP):** Diseño de jerarquía de usuarios segregando roles (Estudiante, Profesor, Admin) para evitar métodos no implementados y herencias forzadas.
+* **Caso 9 (IoC):** Implementación de un Contenedor de Inversión de Control automatizando la inyección de dependencias.
+* **Caso 10 (Reto Final):** Integración de los 5 principios SOLID y contenedor IoC en un caso de uso completo (Registro de Estudiante).
 
 ## 🛠️ Tecnologías y Librerías
 
 * C# 12 y .NET 8 (Aplicaciones de Consola)
+* `Microsoft.Extensions.DependencyInjection` (Contenedor IoC nativo)
 * QuestPDF (Generación de reportes financieros)
 * Twilio SDK y MailKit (Infraestructura de notificaciones)
 
